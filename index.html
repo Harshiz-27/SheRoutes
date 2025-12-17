@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SheRoutes - Women Safe Navigation</title>
+
+  <style>
+    #map {
+      height: 90vh;
+      width: 100%;
+    }
+  </style>
+
+  <script src="map.js"></script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap">
+  </script>
+</head>
+
+<body>
+  </h2>SheRoutes: Safety-Aware Navigation</h2>
+
+  <button onclick="findSafeRoute()">Find Safest Route</button>
+  <button onclick="openCopilot()">Ask AI Safety Assistant</button>
+
+  <div id="map"></div>
+</body>
+</html>
