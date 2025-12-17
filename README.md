@@ -38,11 +38,3 @@ minimize exposure to unsafe areas.
 4. Users can optionally open an AI assistant for safety guidance  
 
 ---
-
-## ▶ How to Run
-
-### Backend
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
