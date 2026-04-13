@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SheRoutes Safety Tips – Essential safety advice for women navigating cities." />
+  <title>Safety Tips – SheRoutes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .page-hero {
+      background: linear-gradient(160deg, var(--navy) 0%, #0d1f5f 60%, #1a0a3d 100%);
+      padding: calc(var(--navbar-h) + 60px) 24px 60px;
+      text-align: center;
+    }
+    .page-hero h1 { font-family: var(--font-main); font-size: clamp(2rem,5vw,3rem); font-weight: 800; color:#fff; margin-bottom:12px; }
+    .page-hero p  { color: rgba(255,255,255,0.6); font-size:1rem; }
+
+    .tips-page { max-width: 960px; margin: 0 auto; padding: 60px 24px 100px; }
+    .tips-category { margin-bottom: 48px; }
+    .tips-category-title {
+      font-family: var(--font-main); font-size: 1.3rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 20px; padding-bottom:10px;
+      border-bottom: 2px solid var(--pink-light);
+    }
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap:16px; }
+    .tip-card {
+      background:#fff; border:1.5px solid rgba(2,26,84,0.1); border-radius: var(--radius-lg);
+      padding: 22px; display:flex; gap:14px; align-items:flex-start;
+      box-shadow: var(--shadow-sm); transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+    .tip-card:hover { transform: translateY(-4px); border-color: var(--pink-light); box-shadow: var(--shadow-md); }
+    .tip-card-icon { font-size: 1.8rem; flex-shrink:0; }
+    .tip-card-text { font-size:0.9rem; color: #333; line-height:1.65; }
+    .tip-card-text strong { color: var(--navy); display:block; margin-bottom:4px; font-size:0.95rem; }
+    .emergency-banner {
+      background: linear-gradient(135deg, #e11d48, #9f1239);
+      border-radius: var(--radius-xl); padding: 32px; text-align:center; color:#fff; margin-bottom:48px;
+    }
+    .emergency-banner h2 { font-family:var(--font-main); font-size:1.5rem; font-weight:800; margin-bottom:8px; }
+    .emergency-banner p { opacity:0.85; font-size:0.95rem; margin-bottom:20px; }
+    .emergency-number {
+      display:inline-block; padding:12px 32px;
+      background:#fff; color:#e11d48; font-family:var(--font-main); font-weight:800; font-size:1.3rem;
+      border-radius:99px; letter-spacing:0.05em;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href="index.html">
+        <img src="https://ik.imagekit.io/yempfzkbt/WhatsApp_Image_2026-04-12_at_11.50.57_AM-removebg-preview.png" alt="SheRoutes Logo" class="brand-logo" />
+        <span class="brand-name">SheRoutes</span>
+      </a>
+      <nav class="navbar-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="safety-tips.html" class="nav-link active">Safety Tips</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="btn-profile" id="btn-profile"><span class="profile-avatar">👤</span><span class="profile-label">Profile</span></button>
+        <button class="btn-sos" id="btn-sos-nav">SOS 🚨</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-hero">
+      <h1>🛡️ Safety <span class="text-gradient">Tips</span></h1>
+      <p>Practical advice to navigate cities confidently and safely</p>
+    </div>
+
+    <div class="tips-page">
+
+      <!-- Emergency Numbers -->
+      <div class="emergency-banner">
+        <h2>🚨 Emergency Numbers India</h2>
+        <p>Save these in your phone and share them with family</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <span class="emergency-number">112 – Police</span>
+          <span class="emergency-number">1091 – Women Helpline</span>
+          <span class="emergency-number">100 – Emergency</span>
+        </div>
+      </div>
+
+      <!-- Before You Travel -->
+      <div class="tips-category">
+        <h2 class="tips-category-title">📋 Before You Travel</h2>
+        <div class="tips-grid">
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">📱</div><div class="tip-card-text"><strong>Share Your Route</strong>Send your trip details and live location to a trusted contact before leaving.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">🔋</div><div class="tip-card-text"><strong>Charge Your Phone</strong>Always travel with at least 60% battery. Carry a power bank for long trips.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">🗺️</div><div class="tip-card-text"><strong>Know Your Route</strong>Review your path on SheRoutes before leaving. Prefer well-lit, populated roads.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">👗</div><div class="tip-card-text"><strong>Dress Comfortable</strong>Wear shoes you can run in. Keep bags close to your body and avoid displaying valuables.</div></div>
+        </div>
+      </div>
+
+      <!-- While Travelling -->
+      <div class="tips-category">
+        <h2 class="tips-category-title">🚶 While Travelling</h2>
+        <div class="tips-grid">
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">👁️</div><div class="tip-card-text"><strong>Stay Aware</strong>Avoid headphones on full volume. Be aware of your surroundings at all times.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">💪</div><div class="tip-card-text"><strong>Walk Confidently</strong>Walk with purpose, make eye contact, and project confidence. Predators target hesitant walkers.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">🏪</div><div class="tip-card-text"><strong>Enter Public Spaces</strong>If you feel followed, enter a busy store, restaurant, or bank immediately.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">🚗</div><div class="tip-card-text"><strong>Verify Cabs</strong>Always verify the car number plate and driver photo before getting into a ride-share.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">📞</div><div class="tip-card-text"><strong>Fake a Call</strong>If uncomfortable, pretend to talk on the phone. Say "I'm just around the corner" loudly.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">🌙</div><div class="tip-card-text"><strong>Avoid Dark Alleys</strong>At night, stick to main roads with streetlights. Never use shortcuts through unlit areas.</div></div>
+        </div>
+      </div>
+
+      <!-- Digital Safety -->
+      <div class="tips-category">
+        <h2 class="tips-category-title">📲 Digital Safety</h2>
+        <div class="tips-grid">
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">🔒</div><div class="tip-card-text"><strong>Lock Your Phone</strong>Set a PIN/fingerprint lock. Enable Find My Device in case of theft.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">📍</div><div class="tip-card-text"><strong>Live Location Sharing</strong>Use WhatsApp or Google Maps to share live location with a trusted person during the journey.</div></div>
+          <div class="tip-card animate-on-scroll"><div class="tip-card-icon">🚨</div><div class="tip-card-text"><strong>SOS on SheRoutes</strong>Use our one-tap SOS button to instantly alert emergency contacts with your exact GPS location.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://ik.imagekit.io/yempfzkbt/WhatsApp_Image_2026-04-12_at_11.50.57_AM-removebg-preview.png" alt="SheRoutes" class="footer-logo" />
+        <span class="footer-brand-name">SheRoutes</span>
+      </div>
+      <p class="footer-copy">© 2026 SheRoutes. Made with 💗 for every woman.</p>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="sos-modal-overlay" role="dialog" aria-modal="true" hidden>
+    <div class="sos-modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="sos-modal-icon">🚨</div>
+      <h2 class="sos-modal-title">SOS Emergency Alert</h2>
+      <p class="sos-modal-desc">Your emergency contacts will be notified with your current location.</p>
+      <div class="sos-modal-actions">
+        <button class="btn-sos-confirm" id="btn-sos-confirm">Send SOS Now</button>
+        <button class="btn-sos-cancel" id="btn-sos-cancel">Cancel</button>
+      </div>
+      <div class="sos-sent" id="sos-sent" hidden><div class="sos-sent-icon">✅</div><p>SOS Alert Sent!</p></div>
+    </div>
+  </div>
+  <div class="toast-container" id="toast-container"></div>
+
+  <script>window.SheRoutes={};</script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/sos.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      SheRoutes.SOS.init();
+      SheRoutes.UI.initNavbar();
+      SheRoutes.UI.initScrollAnimations();
+      document.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 80);
+      });
+    });
+  </script>
+</body>
+</html>

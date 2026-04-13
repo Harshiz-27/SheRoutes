@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SheRoutes – Smart, safe route navigation designed for women. Find the safest path to your destination with real-time safety scores." />
+  <meta property="og:title" content="SheRoutes – Navigate Safely" />
+  <meta property="og:description" content="Find the safest route to your destination." />
+  <title>SheRoutes – Navigate Safely</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Google Maps API — Replace YOUR_API_KEY -->
+  <script>
+    window.GOOGLE_MAPS_API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY_HERE';
+    window.API_BASE_URL = 'http://localhost:5000';
+  </script>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/map.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <!-- Logo -->
+      <a class="navbar-brand" href="index.html" aria-label="SheRoutes Home">
+        <img
+          src="https://ik.imagekit.io/yempfzkbt/WhatsApp_Image_2026-04-12_at_11.50.57_AM-removebg-preview.png"
+          alt="SheRoutes Logo"
+          class="brand-logo"
+          id="brand-logo"
+        />
+        <span class="brand-name">SheRoutes</span>
+      </a>
+
+      <!-- Nav Links -->
+      <nav class="navbar-links" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-link active" id="nav-home">Home</a>
+        <a href="about.html" class="nav-link" id="nav-about">About</a>
+        <a href="safety-tips.html" class="nav-link" id="nav-safety">Safety Tips</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="navbar-actions">
+        <button class="btn-profile" id="btn-profile" aria-label="Profile">
+          <span class="profile-avatar">👤</span>
+          <span class="profile-label">Profile</span>
+        </button>
+        <button class="btn-sos" id="btn-sos-nav" aria-label="SOS Emergency">
+          SOS 🚨
+        </button>
+        <button class="btn-hamburger" id="btn-hamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" role="menu">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="about.html" class="mobile-link">About</a>
+      <a href="safety-tips.html" class="mobile-link">Safety Tips</a>
+      <a href="#" class="mobile-link" id="mobile-profile-link">Profile</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO SEARCH PANEL
+  ═══════════════════════════════════════════════════════ -->
+  <main id="main-content">
+    <section class="hero-section" aria-label="Route Search">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Women's Safety Navigation
+        </div>
+        <h1 class="hero-title">Find Your <span class="text-gradient">Safest Route</span></h1>
+        <p class="hero-subtitle">Navigate with confidence. Every route scored for your safety.</p>
+
+        <!-- Search Card -->
+        <div class="search-card" id="search-card" role="search" aria-label="Route Search Form">
+          <div class="search-card-inner">
+
+            <!-- Source Field -->
+            <div class="input-group" id="source-group">
+              <label for="source-input" class="input-label">
+                <span class="input-icon">📍</span> Source
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="source-input"
+                  class="route-input"
+                  placeholder="Enter starting location…"
+                  autocomplete="off"
+                  aria-required="true"
+                />
+                <button class="btn-locate" id="btn-locate" title="Use current location" aria-label="Use my current location">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8" stroke-width="1.5"/></svg>
+                </button>
+                <div class="autocomplete-dropdown" id="source-dropdown" role="listbox" aria-label="Source suggestions"></div>
+              </div>
+            </div>
+
+            <!-- Swap Button -->
+            <div class="swap-container">
+              <button class="btn-swap" id="btn-swap" title="Swap source and destination" aria-label="Swap locations">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 16V4m0 0L3 8m4-4l4 4"/><path d="M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+              </button>
+            </div>
+
+            <!-- Destination Field -->
+            <div class="input-group" id="dest-group">
+              <label for="dest-input" class="input-label">
+                <span class="input-icon">🎯</span> Destination
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="dest-input"
+                  class="route-input"
+                  placeholder="Enter destination…"
+                  autocomplete="off"
+                  aria-required="true"
+                />
+                <div class="autocomplete-dropdown" id="dest-dropdown" role="listbox" aria-label="Destination suggestions"></div>
+              </div>
+            </div>
+
+            <!-- Travel Mode + Find Button -->
+            <div class="search-footer">
+              <div class="travel-modes" role="group" aria-label="Travel mode">
+                <button class="mode-btn active" data-mode="walking" id="mode-walking" aria-pressed="true">🚶 Walk</button>
+                <button class="mode-btn" data-mode="driving" id="mode-driving" aria-pressed="false">🚗 Drive</button>
+                <button class="mode-btn" data-mode="transit" id="mode-transit" aria-pressed="false">🚌 Transit</button>
+                <button class="mode-btn" data-mode="bicycling" id="mode-bicycling" aria-pressed="false">🚲 Cycle</button>
+              </div>
+              <button class="btn-find-route" id="btn-find-route" aria-label="Find Safe Route">
+                <span class="btn-text">Find Safe Route</span>
+                <span class="btn-icon">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         MAP SECTION
+    ═══════════════════════════════════════════════════════ -->
+    <section class="map-section" aria-label="Map View">
+      <div class="map-container" id="map-container">
+
+        <!-- Map Top Bar -->
+        <div class="map-top-bar">
+          <div class="map-status" id="map-status">
+            <span class="status-dot idle"></span>
+            <span id="map-status-text">Ready to navigate</span>
+          </div>
+          <div class="map-controls">
+            <button class="map-ctrl-btn" id="btn-fullscreen" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+            <button class="map-ctrl-btn" id="btn-traffic" title="Toggle traffic layer" aria-label="Toggle traffic">🚦</button>
+            <button class="map-ctrl-btn" id="btn-satellite" title="Toggle satellite view" aria-label="Toggle satellite">🛰️</button>
+          </div>
+        </div>
+
+        <!-- Map Itself -->
+        <div id="google-map" aria-label="Google Map"></div>
+
+        <!-- Map Placeholder (shown before map loads) -->
+        <div class="map-placeholder" id="map-placeholder">
+          <div class="map-placeholder-inner">
+            <div class="map-pulse-ring"></div>
+            <div class="map-placeholder-icon">🗺️</div>
+            <p class="map-placeholder-text">Enter a source & destination<br/>to view your safe route</p>
+          </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="map-loading" id="map-loading" hidden>
+          <div class="spinner"></div>
+          <p>Finding safest routes…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         ROUTE INFO PANEL
+    ═══════════════════════════════════════════════════════ -->
+    <section class="route-info-section" id="route-info-section" aria-label="Route Information" hidden>
+      <div class="route-info-container">
+
+        <!-- Section Header -->
+        <div class="route-info-header">
+          <h2 class="route-info-title">Route Information</h2>
+          <div class="route-badges">
+            <span class="route-badge recommended">⭐ Recommended</span>
+          </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row" id="stats-row">
+          <div class="stat-card" id="stat-distance">
+            <div class="stat-icon">📏</div>
+            <div class="stat-body">
+              <div class="stat-value" id="stat-distance-val">–</div>
+              <div class="stat-label">Distance</div>
+            </div>
+          </div>
+          <div class="stat-card" id="stat-time">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-body">
+              <div class="stat-value" id="stat-time-val">–</div>
+              <div class="stat-label">Estimated Time</div>
+            </div>
+          </div>
+          <div class="stat-card safety-card" id="stat-safety">
+            <div class="stat-icon">🛡️</div>
+            <div class="stat-body">
+              <div class="stat-value" id="stat-safety-val">–</div>
+              <div class="stat-label">Safety Score</div>
+            </div>
+            <div class="safety-bar-wrap">
+              <div class="safety-bar" id="safety-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alternate Routes -->
+        <div class="alternate-routes" id="alternate-routes" hidden>
+          <h3 class="alt-title">Alternative Routes</h3>
+          <div class="alt-routes-list" id="alt-routes-list"></div>
+        </div>
+
+        <!-- Turn-by-turn Steps -->
+        <div class="steps-section" id="steps-section" hidden>
+          <h3 class="steps-title">Turn-by-Turn Directions</h3>
+          <ol class="steps-list" id="steps-list"></ol>
+        </div>
+
+        <!-- Demo Notice -->
+        <div class="demo-notice" id="demo-notice" hidden>
+          <span>⚠️</span>
+          <p>Running in demo mode. <a href="#api-setup">Add a Google Maps API key</a> for real routes.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FEATURES SECTION
+    ═══════════════════════════════════════════════════════ -->
+    <section class="features-section" aria-label="Key Features">
+      <div class="features-container">
+        <div class="section-header">
+          <h2 class="section-title">Why <span class="text-gradient">SheRoutes?</span></h2>
+          <p class="section-subtitle">Built with your safety as the priority</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card" id="feature-safety">
+            <div class="feature-icon-wrap">🛡️</div>
+            <h3 class="feature-title">Safety Scoring</h3>
+            <p class="feature-desc">Every route is scored based on lighting, crowd density, and reported incidents in the area.</p>
+          </div>
+          <div class="feature-card" id="feature-sos">
+            <div class="feature-icon-wrap">🚨</div>
+            <h3 class="feature-title">One-Tap SOS</h3>
+            <p class="feature-desc">Instantly alert emergency contacts with your live location in one tap — no searching needed.</p>
+          </div>
+          <div class="feature-card" id="feature-realtime">
+            <div class="feature-icon-wrap">📡</div>
+            <h3 class="feature-title">Real-Time Data</h3>
+            <p class="feature-desc">Powered by Google Maps with live traffic, transit updates, and community reports.</p>
+          </div>
+          <div class="feature-card" id="feature-community">
+            <div class="feature-icon-wrap">🤝</div>
+            <h3 class="feature-title">Community Reports</h3>
+            <p class="feature-desc">Women report unsafe zones in real time, keeping the community map always updated.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SAFETY TIPS BANNER
+    ═══════════════════════════════════════════════════════ -->
+    <section class="tips-banner" aria-label="Safety Tips">
+      <div class="tips-inner">
+        <span class="tips-label">💡 Safety Tip:</span>
+        <div class="tips-ticker" id="tips-ticker" aria-live="polite">
+          <span id="tip-text">Always share your live location with a trusted contact before travelling at night.</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SOS MODAL
+  ═══════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="sos-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="sos-modal-title" hidden>
+    <div class="sos-modal" id="sos-modal">
+      <button class="modal-close" id="modal-close" aria-label="Close SOS modal">✕</button>
+      <div class="sos-modal-icon">🚨</div>
+      <h2 class="sos-modal-title" id="sos-modal-title">SOS Emergency Alert</h2>
+      <p class="sos-modal-desc">Your emergency contacts will be notified immediately with your current location.</p>
+      <div class="sos-modal-actions">
+        <button class="btn-sos-confirm" id="btn-sos-confirm">Send SOS Now</button>
+        <button class="btn-sos-cancel" id="btn-sos-cancel">Cancel</button>
+      </div>
+      <div class="sos-sent" id="sos-sent" hidden>
+        <div class="sos-sent-icon">✅</div>
+        <p>SOS Alert Sent! Help is on the way.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       AUTH MODAL (Sign Up / Login)
+  ═══════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="auth-modal-overlay" role="dialog" aria-modal="true" hidden>
+    <div class="auth-modal" id="auth-modal" style="max-width:400px; max-height: 90vh; overflow-y:auto;">
+      <button class="modal-close" id="auth-modal-close">✕</button>
+      <div style="text-align:center; margin-bottom: 20px;">
+        <h2 style="font-family:var(--font-main); color:var(--navy); font-size:1.5rem;">SheRoutes ✨</h2>
+        <p id="auth-modal-subtitle" style="color:var(--text-muted);">Create your account</p>
+      </div>
+
+      <!-- Sign Up Form -->
+      <form id="signup-form">
+        <label class="input-label">Name</label>
+        <input type="text" id="su-name" class="route-input" style="margin-bottom:12px; width:100%; border:1px solid #ccc;" required />
+
+        <label class="input-label">Email</label>
+        <input type="email" id="su-email" class="route-input" style="margin-bottom:12px; width:100%; border:1px solid #ccc;" required />
+
+        <label class="input-label">Phone</label>
+        <input type="tel" id="su-phone" class="route-input" style="margin-bottom:12px; width:100%; border:1px solid #ccc;" required />
+
+        <label class="input-label">Password</label>
+        <div style="position:relative; margin-bottom:12px;">
+          <input type="password" id="su-pass" class="route-input" style="width:100%; border:1px solid #ccc;" required />
+          <button type="button" onclick="document.getElementById('su-pass').type = document.getElementById('su-pass').type === 'password' ? 'text' : 'password'" style="position:absolute; right:10px; top:12px; background:none; border:none; cursor:pointer;">👁️</button>
+        </div>
+
+        <label class="input-label">Confirm Password</label>
+        <input type="password" id="su-confirm" class="route-input" style="margin-bottom:16px; width:100%; border:1px solid #ccc;" required />
+
+        <h3 style="font-family:var(--font-main); color:var(--navy); font-size:1rem; margin-bottom:10px;">Emergency Contact</h3>
+        <label class="input-label">Contact Name</label>
+        <input type="text" id="su-em-name" class="route-input" style="margin-bottom:12px; width:100%; border:1px solid #ccc;" />
+        
+        <label class="input-label">Contact Phone</label>
+        <input type="tel" id="su-em-phone" class="route-input" style="margin-bottom:16px; width:100%; border:1px solid #ccc;" />
+
+        <label style="display:flex; align-items:center; gap:8px; margin-bottom:16px; font-size:0.9rem; color:var(--text-muted); cursor:pointer;">
+          <input type="checkbox" id="su-location" style="width:16px; height:16px;" checked />
+          Allow location access for SOS
+        </label>
+
+        <button type="submit" class="btn-find-route" style="width:100%; justify-content:center; padding:12px; border-radius:12px;">Sign Up</button>
+        <p style="text-align:center; margin-top:16px; font-size:0.9rem;">Already have an account? <a href="#" id="toggle-to-login" style="color:var(--pink); font-weight:600; text-decoration:none;">Login</a></p>
+      </form>
+
+      <!-- Login Form (Hidden by default) -->
+      <form id="login-form" hidden>
+        <!-- Toggles between Password and OTP -->
+        <div style="display:flex; gap:10px; margin-bottom: 20px;">
+          <button type="button" id="tab-login-pass" style="flex:1; padding:8px; border-radius:8px; border:1px solid var(--pink); background:var(--pink); color:#fff; font-weight:600; cursor:pointer;">Password</button>
+          <button type="button" id="tab-login-otp" style="flex:1; padding:8px; border-radius:8px; border:1px solid var(--pink); background:transparent; color:var(--pink); font-weight:600; outline:none; cursor:pointer;">OTP</button>
+        </div>
+
+        <div id="login-pass-section">
+          <label class="input-label">Email</label>
+          <input type="email" id="li-email" class="route-input" style="margin-bottom:12px; width:100%; border:1px solid #ccc;" />
+
+          <label class="input-label">Password</label>
+          <div style="position:relative; margin-bottom:16px;">
+            <input type="password" id="li-pass" class="route-input" style="width:100%; border:1px solid #ccc;" />
+            <button type="button" onclick="document.getElementById('li-pass').type = document.getElementById('li-pass').type === 'password' ? 'text' : 'password'" style="position:absolute; right:10px; top:12px; background:none; border:none; outline:none; cursor:pointer;">👁️</button>
+          </div>
+          <button type="submit" class="btn-find-route" style="width:100%; justify-content:center; padding:12px; border-radius:12px;">Login</button>
+        </div>
+
+        <div id="login-otp-section" hidden>
+          <label class="input-label">Phone</label>
+          <div style="display:flex; gap:10px; margin-bottom:12px;">
+            <input type="tel" id="li-phone" class="route-input" style="flex:1; border:1px solid #ccc;" placeholder="e.g. 9876543210" />
+            <button type="button" id="btn-send-otp" style="background:var(--navy); color:#fff; border:none; padding:0 16px; border-radius:8px; font-weight:600; cursor:pointer;">Send</button>
+          </div>
+
+          <label class="input-label">OTP</label>
+          <input type="text" id="li-otp" class="route-input" style="margin-bottom:16px; width:100%; border:1px solid #ccc;" placeholder="4-digit code" />
+          
+          <button type="button" id="btn-verify-otp" class="btn-find-route" style="width:100%; justify-content:center; padding:12px; border-radius:12px;">Verify OTP</button>
+        </div>
+
+        <p style="text-align:center; margin-top:16px; font-size:0.9rem;">Need an account? <a href="#" id="toggle-to-signup" style="color:var(--pink); font-weight:600; text-decoration:none;">Sign Up</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PROFILE MODAL
+  ═══════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="profile-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title" hidden>
+    <div class="profile-modal" id="profile-modal">
+      <button class="modal-close" id="profile-modal-close" aria-label="Close profile">✕</button>
+      <div class="profile-header">
+        <div class="profile-avatar-large">👤</div>
+        <div>
+          <h2 class="profile-name" id="profile-modal-title">Guest User</h2>
+          <p class="profile-email" id="profile-modal-email">Sign in to save your routes</p>
+          <p class="profile-email" id="profile-modal-phone" style="display:none; margin-top:4px; font-size:0.85rem; color:var(--text-muted);"></p>
+        </div>
+      </div>
+      
+      <!-- Added Emergency Contact display -->
+      <div id="profile-emergency-display" style="display:none; margin-bottom:20px; padding:16px; background:var(--pink-light); border-radius:12px;">
+        <h3 style="font-family:var(--font-main); font-size:1rem; color:var(--navy); margin-bottom:8px;">Emergency Contact</h3>
+        <p style="margin:0; font-size:0.9rem;"><strong id="em-display-name">Name</strong></p>
+        <p style="margin:0; font-size:0.9rem;" id="em-display-phone">Phone</p>
+      </div>
+
+      <div class="profile-actions">
+        <button class="btn-signin" id="btn-signin">Sign In / Sign Up</button>
+        <button class="btn-emergency-contacts" id="btn-logout" style="display:none; background:#ef4444; color:#fff; border-color:#ef4444;">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://ik.imagekit.io/yempfzkbt/WhatsApp_Image_2026-04-12_at_11.50.57_AM-removebg-preview.png" alt="SheRoutes" class="footer-logo" />
+        <span class="footer-brand-name">SheRoutes</span>
+      </div>
+      <p class="footer-tagline">Empowering women with safer navigation.</p>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="safety-tips.html">Safety Tips</a>
+        <a href="mailto:hello@sheroutes.app">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+      <p class="footer-copy">© 2026 SheRoutes. Made with 💗 for every woman.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/autocomplete.js"></script>
+  <script src="js/sos.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Load Google Maps lazily -->
+  <script>
+    function loadGoogleMaps() {
+      const key = window.GOOGLE_MAPS_API_KEY;
+      if (!key || key === 'YOUR_GOOGLE_MAPS_API_KEY_HERE') {
+        console.warn('⚠️ No Google Maps API key configured. Running in demo mode.');
+        window.MAPS_DEMO_MODE = true;
+        if (window.onMapsReady) window.onMapsReady();
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places,geometry&callback=onMapsReady`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+    loadGoogleMaps();
+  </script>
+
+</body>
+</html>
