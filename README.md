@@ -1,40 +1,64 @@
-# SheRoutes – AI-Assisted Safety-Aware Women’s Navigation
-
-SheRoutes is a full-stack web application designed to help women navigate safer
-routes by prioritizing safety metrics over distance. The system combines
-risk-aware graph algorithms with Google Maps visualization and optional AI
-assistance for safety awareness.
-
----
-
-##  Problem Statement
-Most navigation systems optimize for shortest distance or time and ignore
-personal safety factors. SheRoutes addresses this gap by computing routes that
-minimize exposure to unsafe areas.
+<div align="center">
+  <img src="https://ik.imagekit.io/yempfzkbt/WhatsApp_Image_2026-04-12_at_11.50.57_AM-removebg-preview.png" alt="SheRoutes Logo" width="120" />
+  
+  # SheRoutes 🌸
+  ### Navigate your city with confidence
+  **Community-powered safety for every woman**
+</div>
 
 ---
 
-## Features
-- Risk-aware route optimization using graph algorithms  
-- Modified Dijkstra’s algorithm with priority queues  
-- Google Maps route visualization  
-- RESTful backend API (FastAPI)  
-- Optional AI assistance via Microsoft Copilot for safety guidance  
-- Transparent and explainable routing logic  
----
+## 📌 About the Project
 
-## 🛠 Tech Stack
-*Frontend:* HTML, JavaScript, Google Maps API  
-*Backend:* Python, FastAPI  
-*Algorithms:* Graphs, Dijkstra’s Algorithm, Priority Queues  
-*AI Assistance:* Microsoft Copilot (external, user-triggered)
+**SheRoutes** is a full-stack safety navigation platform designed to help women travel safely in urban environments.
+
+It combines **Google Maps intelligence**, **real-time safety scoring**, and **community-driven alerts** to provide smarter and safer route recommendations.
 
 ---
 
-## ⚙ How It Works
-1. User selects start and destination  
-2. Backend computes safest path using risk-weighted Dijkstra’s algorithm  
-3. Route is visualized on Google Maps  
-4. Users can optionally open an AI assistant for safety guidance  
+## ✨ Features
+
+### 🛡️ Safety & Navigation
+- Safety Scoring Algorithm (0–100 rating)
+- Color-coded safe/unsafe routes
+- One-Tap SOS with live GPS sharing
+- Dynamic routing (Walk, Drive, Transit, Cycling)
+- Address autocomplete + Locate Me
+- Interactive maps (dark theme, traffic, satellite)
 
 ---
+
+### 👤 User & Security
+- Email/Password Authentication
+- Phone OTP Login
+- Emergency Contact Setup
+- JWT-based Authentication
+- MongoDB secure data storage
+
+---
+
+## 🛠️ Tech Stack
+
+| Category   | Technology |
+|-----------|-----------|
+| Frontend  | HTML, CSS, JavaScript (ES6+), Google Maps API |
+| Backend   | Node.js, Express.js |
+| Database  | MongoDB (Mongoose) |
+| Security  | JWT, Helmet, CORS, Rate Limiting |
+
+---
+
+## ⚙️ Setup Guide
+
+### 🔹 1. Prerequisites
+- Node.js (v14+)
+- Google Maps API Key
+- MongoDB URI
+
+---
+
+### 🔹 2. Backend Setup
+
+```bash
+cd backend
+npm install
